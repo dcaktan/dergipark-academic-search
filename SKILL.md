@@ -25,6 +25,14 @@ Never attempt to bypass the Turnstile challenge or fetch /search. If the user wa
 keyword search across all of DergiPark, use Crossref or a search engine with
 site:dergipark.org.tr (Workflow 3), or hand the search over to the user.
 
+## Responsible use
+
+This skill only reads publicly available metadata from dergipark.org.tr and from the
+Crossref API. It does not bypass authentication, captchas or bot protection, and it does
+not download the corpus in bulk. Before pointing it at a third-party service the user is
+responsible for checking that service's current terms of use. See
+references/endpoints.md for the detailed note and the verified robots.txt rules.
+
 ## URL Patterns (all verified)
 
 ```
@@ -44,7 +52,7 @@ Swap /tr/ for /en/ anywhere to get the English UI (affects which abstract is sho
 ## Workflow 1: DOI to full metadata (most reliable)
 
 ```bash
-curl -sL "https://dergipark.org.tr/tr/doi/10.21923/jesd.1932518" \
+curl -sL "https://dergipark.org.tr/tr/doi/10.12345/ornek.000001" \
   | grep -oP '<meta name="citation_(title|author|doi|abstract|issn|journal_title|publication_date|volume|issue|firstpage|lastpage|keywords|language|article_type|pdf_url)" content="\K[^"]*'
 ```
 
@@ -107,7 +115,7 @@ likely DergiPark if resolving the DOI leads to dergipark.org.tr.
 
 ## Workflow 5: Full text
 
-citation_pdf_url (relative, e.g. /tr/download/article-file/5923395) returns
+citation_pdf_url (relative, e.g. /tr/download/article-file/0000000) returns
 application/pdf. Always report the PDF URL so the user can open it directly.
 Many articles are Turkish-language with an English abstract - fetch the /en/ variant
 when the user wants the English abstract.
