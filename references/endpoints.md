@@ -21,6 +21,34 @@ Disallow: /en/search
 Consequence: /search is forbidden by the site owner in addition to being
 Turnstile-protected. This skill must not fetch it.
 
+## Terms of service - read before automating
+
+DergiPark is run by TUBITAK ULAKBIM. Before running any automated requests against it
+the operator of this skill must check the site's current terms of use and any
+applicable API policy. This skill does not ship a copy of those terms because they can
+change; a stale snapshot in a repository would be worse than none.
+
+What is known and verified:
+
+- /robots.txt disallows /search, /tr/search and /en/search - this skill honours that.
+- The search page is additionally gated by Cloudflare Turnstile.
+- No public API or OAI-PMH endpoint exists (see the 404 table below).
+- Article, issue and archive pages are ordinary server-rendered HTML.
+
+What this skill therefore never does:
+
+- fetch a robots-disallowed path
+- attempt to solve or bypass a captcha or bot challenge
+- authenticate, register or use credentials
+- bulk-download the corpus
+
+Recommended minimum behaviour when using it:
+
+- one request per second, with a descriptive User-Agent
+- cache pages locally instead of re-fetching
+- prefer Crossref (keyless, explicitly machine-readable) for keyword discovery
+- stop immediately if the site returns 429 or starts blocking
+
 ## Working endpoints
 
 | Purpose | URL | Verified result |
