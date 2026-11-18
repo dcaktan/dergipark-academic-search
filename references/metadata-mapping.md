@@ -4,31 +4,38 @@ Article pages carry Highwire Press meta tags plus Dublin Core. All tags below we
 verified on a live article page. Multi-value tags repeat (authors, institutions,
 ORCIDs, references).
 
+> **All example values below are fictitious placeholders.** Author names, ORCID, DOI,
+> article id, pages and keywords are invented so that a real person is not identified.
+> The card selectors and verified counts were observed on the live site.
+
 ## Complete verified tag inventory
 
 | Tag | Repeats | Example | Maps to |
 |---|---|---|---|
-| citation_title | no | STRATEJIK RISK ANALIZINDE ... | title |
-| citation_author | yes | Hasan Koseoglu | authors[].name |
-| citation_author_institution | yes | SULEYMAN DEMIREL UNIVERSITY | authors[].institution |
-| citation_author_orcid | yes | 0000-0003-0183-208X | authors[].orcid |
-| citation_doi | no | 10.21923/jesd.1932518 | doi |
-| citation_journal_title | no | Muhendislik Bilimleri ve Tasarim Dergisi | journal.title |
-| citation_journal_abbrev | no | MBTD | journal.abbrev |
-| citation_issn | no | 1308-6693 | journal.issn |
-| citation_publisher | yes (dup) | Suleyman Demirel Universitesi | publisher |
-| citation_publication_date | no | 2026-09-25 | date (ISO) |
-| citation_volume | no | 14 | volume |
-| citation_issue | no | 3 | issue |
-| citation_firstpage | no | 544 | firstPage |
-| citation_lastpage | no | 563 | lastPage |
+| citation_title | no | Ornek Makale Basligi | title |
+| citation_author | yes | Ornek Yazar Bir | authors[].name |
+| citation_author_institution | yes | ORNEK UNIVERSITESI | authors[].institution |
+| citation_author_orcid | yes | 0000-0002-1825-0097 | authors[].orcid |
+| citation_doi | no | 10.12345/ornek.000001 | doi |
+| citation_journal_title | no | Ornek Muhendislik Dergisi | journal.title |
+| citation_journal_abbrev | no | OMD | journal.abbrev |
+| citation_issn | no | 0000-0000 | journal.issn |
+| citation_publisher | yes (dup) | Ornek Universitesi | publisher |
+| citation_publication_date | no | 2025-01-01 | date (ISO) |
+| citation_volume | no | 10 | volume |
+| citation_issue | no | 2 | issue |
+| citation_firstpage | no | 1 | firstPage |
+| citation_lastpage | no | 10 | lastPage |
 | citation_article_type | no | Arastirma Makalesi | articleType |
 | citation_language | no | tr | language |
-| citation_keywords | no | Afet Yonetimi;CKKV;Deprem | keywords[] (semicolon-separated) |
+| citation_keywords | no | Ornek Anahtar Bir;Ornek Anahtar Iki | keywords[] (semicolon-separated) |
 | citation_abstract | no | full abstract text | abstract |
 | citation_abstract_html_url | no | article URL | url |
-| citation_pdf_url | no | /tr/download/article-file/5923395 | pdfUrl (relative!) |
-| citation_reference | yes | Cajilig, P., 2024. ... | references[] |
+| citation_pdf_url | no | /tr/download/article-file/0000000 | pdfUrl (relative!) |
+| citation_reference | yes | Author, A., 2025. Example reference. | references[] |
+
+Note on citation_author_orcid: 0000-0002-1825-0097 is the ORCID foundation's public
+example identifier, not a real researcher.
 
 ## Dublin Core (secondary, use as fallback)
 
@@ -36,10 +43,10 @@ ORCIDs, references).
 |---|---|
 | DC.Title | article title |
 | DC.Source | journal title |
-| DC.Source.Volume / DC.Source.Issue | 14 / 3 |
-| DC.Identifier | 1932518 (article id) |
-| DC.Identifier.DOI | 10.21923/jesd.1932518 |
-| DC.Identifier.pageNumber | 544-563 (already joined) |
+| DC.Source.Volume / DC.Source.Issue | 10 / 2 |
+| DC.Identifier | 0000000 (article id) |
+| DC.Identifier.DOI | 10.12345/ornek.000001 |
+| DC.Identifier.pageNumber | 1-10 (already joined) |
 | DC.Identifier.URI | article URL |
 | DC.Language | tr |
 | DC.Type.articleType | Arastirma Makalesi |
@@ -72,5 +79,5 @@ which is why regex is required. Verified stable across a full 21-article issue.
 
 ## Journal home page
 
-Only e-ISSN is reliably present as text (e-ISSN: 1308-6693). Print ISSN may be absent
+Only e-ISSN is reliably present as text (e-ISSN: 0000-0000). Print ISSN may be absent
 entirely. Prefer citation_issn from an article page over parsing the journal page.
